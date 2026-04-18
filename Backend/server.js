@@ -76,11 +76,18 @@ app.get("/health", (req, res) => {
 
 
 // ✅ SPA fallback (VERY IMPORTANT)
-app.get("*", (req, res) => {
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "public", "index.html"));
+// });
+
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// httpServer.listen(3000, () => {
+//   console.log("Server is running on port 3000");
+// });
 
-httpServer.listen(3000, () => {
+httpServer.listen(3000, "0.0.0.0", () => {
   console.log("Server is running on port 3000");
 });
